@@ -1,0 +1,37 @@
+**
+ * Say Hello
+ * @param {String|String[]|null} name The name, collection of names, or nothing.
+ * @returns {String}
+* If a single name is given, returns 'Hello, [name]',
+* If a single name in all capps is given, returns 'HELLO [name]!',
+* If a collection of names is given, returns 'Hello, [name1], [name2], ... [nameN]',
+ * Otherwise returns 'Hello there!'
+ */
+function greet(name) {
+  if (typeof name === "string") {
+    // Test if name is a string
+    if (/^[A-Z]+$/.test(name)) {
+      // Test if name is all caps.
+      return "HELLO " + name + "!"; // return "shouting"
+    }
+    return "Hello, " + name; // return simple hello
+  }
+  if (Array.isArray(name)) {
+    // Test if name is a collection.
+    return "Hello, " + name.join(", "); // return hello to everyone.
+  }
+  return "Hello there!"; // just say hi
+}
+
+describe("Testing...", function () {
+  test("Single Name", function () {
+    expect(greet("Maddylen")).toBe("Hello, Maddylen");
+  });
+  test("Shouting", function () {
+    expect(greet("SHMUELI")).toBe("HELLO SHMUELI!");
+  });
+  test("Collection of name", function () {
+    expect(greet(["Maddelyn", "Shmueli", "Cajun"])).toBe(
+      "Hello, Maddylen, Shmueli, Cajun"
+    );
+  });
